@@ -11,3 +11,8 @@
 #include "Weight.h"
 #include <cassert>
 #include <iostream>
+
+const float Weight :: UNKNOWN_WEIGHT    = -1    ;
+            ///conversion units
+const float Weight :: KILOS_PER_POUND   = -1    ;
+const float Weight :: SLUGS_PER_POUND   = -1    ;

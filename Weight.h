@@ -12,8 +12,21 @@
 
 
 class Weight {
+public:     ///enums
+    enum UnitOfMeasure { POUND, KILO, SLUG };
+            ///unknown weight
+    static const float UNKNOWN_WEIGHT    ;
+            ///conversion units
+    static const float KILOS_PER_POUND  ;
+    static const float SLUGS_PER_POUND  ;
+
+public:     ///hold the weights
+    float inputWeight       ;
+    float weightInPounds    ;
+    float weightInKilos     ;
+    float weightInSlugs     ;
 
 };
 
 
-\
+
