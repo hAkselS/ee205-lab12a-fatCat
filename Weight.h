@@ -9,22 +9,35 @@
 /// @date   15_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
 #pragma once
+#include <string>
 
 
 class Weight {
-public:     ///enums
+public:     ///enums & labels
     enum UnitOfMeasure { POUND, KILO, SLUG };
+    static const std::string POUND_LABEL;
+    static const std::string KILO_LABEL;
+    static const std::string SLUG_LABEL;
+
+
             ///unknown weight
     static const float UNKNOWN_WEIGHT    ;
             ///conversion units
     static const float KILOS_PER_POUND  ;
     static const float SLUGS_PER_POUND  ;
 
+
 public:     ///hold the weights
-    float inputWeight       ;
     float weightInPounds    ;
     float weightInKilos     ;
     float weightInSlugs     ;
+
+public:     ///setters
+    void setWeight ( const float newWeight );
+
+public:     ///getters
+    float getWeight () const noexcept;     ///in pounds
+
 
 };
 

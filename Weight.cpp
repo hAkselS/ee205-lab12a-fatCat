@@ -11,8 +11,28 @@
 #include "Weight.h"
 #include <cassert>
 #include <iostream>
+            ///labels and such
+const std::string POUND_LABEL   = "Pound"   ;
+const std::string KILO_LABEL    = "Kilo"    ;
+const std::string SLUG_LABEL    = "Slug"    ;
+const float Weight :: UNKNOWN_WEIGHT    = -1          ;
 
-const float Weight :: UNKNOWN_WEIGHT    = -1    ;
             ///conversion units
-const float Weight :: KILOS_PER_POUND   = -1    ;
-const float Weight :: SLUGS_PER_POUND   = -1    ;
+const float Weight :: KILOS_PER_POUND   = 0.453592    ;
+const float Weight :: SLUGS_PER_POUND   = 0.031081    ;
+
+
+
+///setters
+void Weight::setWeight(const float newWeight) {
+    ///@todo validate weight
+    weightInPounds = newWeight;
+}
+
+            ///getters
+float Weight::getWeight() const noexcept {
+    ///@todo validate weight
+    return weightInPounds;
+}
+
+
