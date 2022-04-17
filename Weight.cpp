@@ -201,6 +201,15 @@ bool Weight::isWeightKnown() const noexcept {
 bool Weight::hasMaxWeight() const noexcept {
     return bHasMax;
 }
+float Weight::getMaxWeight() const noexcept {
+    if (bHasMax){
+        return maxWeight;
+    }
+    else{
+        return -1;
+    }
+}
+
 
 #define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
 void Weight::dump() const noexcept {
@@ -210,8 +219,10 @@ void Weight::dump() const noexcept {
     cout << boolalpha ;
     FORMAT_LINE( "Weight", "this" )             << this             << endl ;
     FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()  << endl ;
-    FORMAT_LINE( "Weight", "weight" )           << getWeight( getUnits() )      << endl ;   ///fix this
+    FORMAT_LINE( "Weight", "weight" )           << getWeight( getUnits() )      << endl ;
     FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( getUnits() )      << endl ;
+    FORMAT_LINE( "Weight", "hasMaxWeight" )     << hasMaxWeight()      << endl ;
+    FORMAT_LINE( "Weight", "MaxWeight" )        << getMaxWeight()      << endl ;
 
 }
 
@@ -228,6 +239,7 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept { ///@todo ad
     }
     return true;
 }
+
 
 
 

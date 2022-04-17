@@ -67,6 +67,7 @@ public:     ///getters
     UnitOfMeasure getUnits () const noexcept;
     bool isWeightKnown () const noexcept;
     bool hasMaxWeight () const noexcept;
+    float getMaxWeight () const noexcept;
     void dump () const noexcept;
 
 public:     ///validation

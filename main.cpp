@@ -40,13 +40,16 @@ int main() {
     Weight weightTwo ( Weight::KILO );
     cout << "weightTwo getUnits: [" << weightTwo.getUnits() << "]" << endl;
 
-    ///test set max weight
-    Weight weightThree;
-    weightThree.setMaxWeight( 10 ); /// include print max weight
+
 
     ///test the dump
+    cout << "catWeight.dump" << endl;
     catWeight.dump();
+    //test set max weight
+    Weight weightThree;
+    cout << "catThree.dump" << endl;
     weightThree.dump();
+    weightThree.setMaxWeight( 10 ); /// @todo include print max weight
     weightThree.setWeight( 21.1, Weight::SLUG);
     weightThree.dump();
 
