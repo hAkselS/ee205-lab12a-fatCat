@@ -50,7 +50,7 @@ float Weight::fromPoundToSlug(float poundIn) noexcept {
     return slugOut;
 }
 float Weight::convertWeight(float fromWeight, Weight::UnitOfMeasure fromUnit, Weight::UnitOfMeasure toUnit) noexcept {
-    ///Weight::isWeightValid( fromWeight ); //@todo fix this
+    //@todo validate weight
     switch ( fromUnit ){
         case POUND:
             switch ( toUnit ){
@@ -87,7 +87,6 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfMeasure fromUnit, We
             ///constructors
 Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
-
 }
 
 
@@ -120,6 +119,13 @@ float Weight::getWeight(Weight::UnitOfMeasure weightUnits) {
         return -1;
     }
 }
+Weight::UnitOfMeasure Weight::getUnits() const noexcept {
+    return Weight::unitOfMeasure;
+}
+void Weight::dump() const noexcept {
+    
+}
+
             ///validation
 bool Weight::validate() const noexcept {
     //@todo make this validate everything
@@ -133,6 +139,40 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
+///new constructors
+Weight::Weight(float newWeight) {
+    if (Weight::isWeightValid( newWeight)){
+        weightInPounds = newWeight;
+    }
+    else {
+        cout << "invalid weight" << endl;
+        weightInPounds = UNKNOWN_WEIGHT;
+    }
+}
+
+Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
+    unitOfMeasure = newUnitOfMeasure;
+}
+
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
+
+}
+
+Weight::Weight(float newWeight, float newMaxWeight) {
+
+}
+
+Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
+
+}
+
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
+
+}
+
+
+
+
 
 
 

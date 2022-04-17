@@ -34,13 +34,26 @@ public:     ///enums & labels
     static float convertWeight ( float fromWeight, UnitOfMeasure fromUnit, UnitOfMeasure toUnit ) noexcept;
 
 
-public:     ///hold the weights
-    float weightInPounds    ;
-    float weightInKilos     ;
-    float weightInSlugs     ;
+public:     ///hold the weights / knowns / max / unit of measure (basically all info about the cat
+    float weightInPounds        ;
+    float weightInKilos         ;
+    float weightInSlugs         ;
+    float maxWeight             ;
+    bool  bIsKnown              ;
+    bool  bHasMax               ;
+    UnitOfMeasure unitOfMeasure ;
 
 public:     ///constructors
-    Weight();
+    Weight( );
+    Weight( float newWeight );
+    Weight( UnitOfMeasure newUnitOfMeasure );
+    Weight( float newWeight, UnitOfMeasure newUnitOfMeasure );
+    Weight( float newWeight, float newMaxWeight );
+    Weight( UnitOfMeasure newUnitOfMeasure, float newMaxWeight );
+    Weight( float newWeight, UnitOfMeasure newUnitOfMeasure, float newMaxWeight );
+
+
+
 
 public:     ///setters
     void setWeight ( const float newWeight );
@@ -48,6 +61,8 @@ public:     ///setters
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds
     float getWeight ( UnitOfMeasure weightUnits );
+    UnitOfMeasure getUnits () const noexcept;
+    void dump () const noexcept;
 
 public:     ///validation
     bool validate() const noexcept;
