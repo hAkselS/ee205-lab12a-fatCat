@@ -15,9 +15,10 @@
 class Weight {
 public:     ///enums & labels
     enum UnitOfMeasure { POUND, KILO, SLUG };
-    static const std::string POUND_LABEL;
-    static const std::string KILO_LABEL;
-    static const std::string SLUG_LABEL;
+    //static const std::string POUND_LABEL;
+    //static const std::string KILO_LABEL;
+    //static const std::string SLUG_LABEL;
+    std::string printUnits( UnitOfMeasure outUnit );
 
 
             ///unknown weight

@@ -16,14 +16,21 @@
 using namespace std;
 
             ///labels and such
-const std::string POUND_LABEL   = "Pound"   ;
-const std::string KILO_LABEL    = "Kilo"    ;
-const std::string SLUG_LABEL    = "Slug"    ;
-const float Weight :: UNKNOWN_WEIGHT    = -1          ;
+//const std::string POUND_LABEL   = "Pound"   ;
+//const std::string KILO_LABEL    = "Kilo"    ;
+//const std::string SLUG_LABEL    = "Slug"    ;
+const float Weight :: UNKNOWN_WEIGHT    = -1;
 
+string Weight::printUnits(Weight::UnitOfMeasure outUnit) {
+    switch (outUnit){
+        case POUND:
+            return "Pound";
+    }
+}
             ///conversion scalars
 const float Weight :: KILOS_PER_POUND   = 0.453592    ;
 const float Weight :: SLUGS_PER_POUND   = 0.031081    ;
+
 
 
             ///unit converters
@@ -166,9 +173,10 @@ void Weight::dump() const noexcept {
     cout << setfill( ' ' ) ;
     cout << left ;
     cout << boolalpha ;
-    FORMAT_LINE( "Weight", "this" )         << this             << endl ;
-    FORMAT_LINE( "Weight", "isKnown" )      << isWeightKnown()  << endl ;
-    FORMAT_LINE( "Weight", "weight" )       << getWeight()      << endl ;
+    FORMAT_LINE( "Weight", "this" )             << this             << endl ;
+    FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()  << endl ;
+    FORMAT_LINE( "Weight", "weight" )           << getWeight()      << endl ;
+    //FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( POUND )      << endl ;
 
 }
 
@@ -185,6 +193,8 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
+
+
 
 
 

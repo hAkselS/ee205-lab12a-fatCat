@@ -42,6 +42,7 @@ int main() {
 
     ///test the dump
     catWeight.dump();
+    cout << catWeight.printUnits( catWeight.getUnits() ) << endl;
 
 
     return 0;
