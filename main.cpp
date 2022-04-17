@@ -42,7 +42,10 @@ int main() {
 
     ///test the dump
     catWeight.dump();
-
+    Weight weightThree;
+    weightThree.dump();
+    weightThree.setWeight( 21.1, Weight::SLUG);
+    weightThree.dump();
 
 
     return 0;

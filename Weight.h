@@ -62,7 +62,7 @@ public:     ///setters
 
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds
-    float getWeight ( UnitOfMeasure weightUnits );
+    float getWeight ( UnitOfMeasure weightUnits ) const;
     UnitOfMeasure getUnits () const noexcept;
     bool isWeightKnown () const noexcept;
     void dump () const noexcept;

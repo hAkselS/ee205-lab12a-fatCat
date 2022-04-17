@@ -146,9 +146,15 @@ void Weight::setWeight(const float newWeight) {
 void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits) {
     if (isWeightValid( newWeight)){
         switch (weightUnits){
-            case POUND:     weightInPounds  = newWeight;
-            case KILO:      weightInKilos   = newWeight;
-            case SLUG:      weightInSlugs   = newWeight;
+            case POUND:
+                weightInPounds  = newWeight;
+                unitOfMeasure = POUND;
+            case KILO:
+                weightInKilos   = newWeight;
+                unitOfMeasure = KILO;
+            case SLUG:
+                weightInSlugs = newWeight;
+                unitOfMeasure = SLUG;
         }
         bIsKnown = true;
     }
@@ -162,7 +168,7 @@ float Weight::getWeight() const noexcept {
     ///@todo validate weight
     return weightInPounds;
 }
-float Weight::getWeight(Weight::UnitOfMeasure weightUnits) {
+float Weight::getWeight(Weight::UnitOfMeasure weightUnits) const {
     if ( weightUnits == POUND ){
         return weightInPounds;
     }
@@ -192,7 +198,7 @@ void Weight::dump() const noexcept {
     cout << boolalpha ;
     FORMAT_LINE( "Weight", "this" )             << this             << endl ;
     FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()  << endl ;
-    FORMAT_LINE( "Weight", "weight" )           << getWeight()      << endl ;
+    FORMAT_LINE( "Weight", "weight" )           << getWeight( getUnits() )      << endl ;   ///fix this
     FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( getUnits() )      << endl ;
 
 }
