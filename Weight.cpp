@@ -30,7 +30,7 @@ string Weight::printUnits(const Weight::UnitOfMeasure outUnit) const {
         case SLUG:
             return "Slug";
     }
-    return "unit of measure unknown";
+    return "printUnits: unit of measure unknown";
 }
             ///conversion scalars
 const float Weight :: KILOS_PER_POUND   = 0.453592    ;
@@ -94,7 +94,7 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfMeasure fromUnit, We
                     return fromWeight;
             }
     }
-    cout << "invalid to/from unit" << endl;
+    cout << "convertWeight: invalid to/from unit" << endl;
     return UNKNOWN_WEIGHT;
 }
 
@@ -109,7 +109,7 @@ Weight::Weight(float newWeight) {
         bIsKnown = true;
     }
     else {
-        cout << "invalid weight" << endl;
+        cout << "constructor: invalid weight" << endl;
         weightInPounds = UNKNOWN_WEIGHT;
     }
 }
@@ -159,7 +159,7 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
         bIsKnown = true;
     }
     else{
-        cout << "invalid weight" << endl;
+        cout << "setWeight: invalid weight" << endl;
     }
 }
 void Weight::setMaxWeight(const float newMaxWeight) {
@@ -168,7 +168,7 @@ void Weight::setMaxWeight(const float newMaxWeight) {
         bHasMax = true;
     }
     else{
-        cout << "new max weight is invalid" << endl;
+        cout << "setMaxWeight: new max weight is invalid" << endl;
     }
 }
 
@@ -188,7 +188,7 @@ float Weight::getWeight(Weight::UnitOfMeasure weightUnits) const {
         return weightInSlugs;
     }
     else{
-        cout << "invalid unit of measure!" << endl;
+        cout << "getWeight: invalid unit of measure!" << endl;
         return -1;
     }
 }
@@ -234,8 +234,14 @@ bool Weight::validate() const noexcept {
 }
 bool Weight::isWeightValid(const float inputWeight) const noexcept { ///@todo add max weight validation
     if ( inputWeight <= 0){
-        cout << "weight must be greater than 0" << endl;
+        cout << "isWeightValid: weight must be greater than 0" << endl;
         return false;
+    }
+    if ( bHasMax){
+        if ( inputWeight >= maxWeight ){
+            cout << "isWeightValid: weight must be less than max weight" << endl;
+            return false;
+        }
     }
     return true;
 }

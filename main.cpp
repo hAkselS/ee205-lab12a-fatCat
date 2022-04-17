@@ -49,8 +49,8 @@ int main() {
     Weight weightThree;
     cout << "catThree.dump" << endl;
     weightThree.dump();
-    weightThree.setMaxWeight( 10 ); /// @todo include print max weight
-    weightThree.setWeight( 21.1, Weight::SLUG);
+    weightThree.setMaxWeight( 10 );
+    weightThree.setWeight( 21.1, Weight::SLUG); ///@todo cannot accept this weight
     weightThree.dump();
 
 
