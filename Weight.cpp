@@ -162,6 +162,15 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
         cout << "invalid weight" << endl;
     }
 }
+void Weight::setMaxWeight(const float newMaxWeight) {
+    if (isWeightValid( newMaxWeight)){
+        maxWeight = newMaxWeight;
+        bHasMax = true;
+    }
+    else{
+        cout << "new max weight is invalid" << endl;
+    }
+}
 
             ///getters
 float Weight::getWeight() const noexcept {
@@ -189,6 +198,9 @@ Weight::UnitOfMeasure Weight::getUnits() const noexcept {
 bool Weight::isWeightKnown() const noexcept {
     return bIsKnown;
 }
+bool Weight::hasMaxWeight() const noexcept {
+    return bHasMax;
+}
 
 #define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
 void Weight::dump() const noexcept {
@@ -209,13 +221,17 @@ bool Weight::validate() const noexcept {
 
     return true;
 }
-bool Weight::isWeightValid(const float inputWeight) const noexcept {
+bool Weight::isWeightValid(const float inputWeight) const noexcept { ///@todo add max weight validation
     if ( inputWeight <= 0){
         cout << "weight must be greater than 0" << endl;
         return false;
     }
     return true;
 }
+
+
+
+
 
 
 

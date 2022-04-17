@@ -59,12 +59,14 @@ public:     ///constructors
 public:     ///setters
     void setWeight ( const float newWeight );
     void setWeight ( const float newWeight, UnitOfMeasure weightUnits );
+    void setMaxWeight ( const float newMaxWeight );
 
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds
     float getWeight ( UnitOfMeasure weightUnits ) const;
     UnitOfMeasure getUnits () const noexcept;
     bool isWeightKnown () const noexcept;
+    bool hasMaxWeight () const noexcept;
     void dump () const noexcept;
 
 public:     ///validation
