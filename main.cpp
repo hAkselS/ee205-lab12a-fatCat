@@ -40,6 +40,8 @@ int main() {
     Weight weightTwo ( Weight::KILO );
     cout << "weightTwo getUnits: [" << weightTwo.getUnits() << "]" << endl;
 
+    ///test the dump
+    catWeight.dump();
 
 
     return 0;

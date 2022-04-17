@@ -8,6 +8,8 @@
 /// @author  Aksel Sloan <@aksel@hawaii.edu>
 /// @date   15_Apr_2022
 ///////////////////////////////////////////////////////////////////////////////
+#include <iostream>
+#include <iomanip>
 #include "Weight.h"
 #include <cassert>
 #include <iostream>
@@ -89,12 +91,44 @@ Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
 }
 
+Weight::Weight(float newWeight) {
+    if (Weight::isWeightValid( newWeight)){
+        weightInPounds = newWeight;
+        bIsKnown = true;
+    }
+    else {
+        cout << "invalid weight" << endl;
+        weightInPounds = UNKNOWN_WEIGHT;
+    }
+}
+
+Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
+    unitOfMeasure = newUnitOfMeasure;
+}
+
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
+
+}
+
+Weight::Weight(float newWeight, float newMaxWeight) {
+
+}
+
+Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
+
+}
+
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
+
+}
+
 
             ///setters
 void Weight::setWeight(const float newWeight) {
     if (isWeightValid( newWeight ) ){
         weightInPounds = newWeight;
-        weightInKilos = fromPoundToKilo( newWeight );
+        //weightInKilos = fromPoundToKilo( newWeight ); ///more efficient design I think
+        bIsKnown = true;
 
     }
 }
@@ -122,8 +156,20 @@ float Weight::getWeight(Weight::UnitOfMeasure weightUnits) {
 Weight::UnitOfMeasure Weight::getUnits() const noexcept {
     return Weight::unitOfMeasure;
 }
+bool Weight::isWeightKnown() const noexcept {
+    return bIsKnown;
+}
+
+#define FORMAT_LINE( className, member ) cout << setw(8) << (className) << setw(20) << (member) << setw(52)
 void Weight::dump() const noexcept {
-    
+    cout << setw(80) << setfill( '=' ) << "" << endl ;
+    cout << setfill( ' ' ) ;
+    cout << left ;
+    cout << boolalpha ;
+    FORMAT_LINE( "Weight", "this" )         << this             << endl ;
+    FORMAT_LINE( "Weight", "isKnown" )      << isWeightKnown()  << endl ;
+    FORMAT_LINE( "Weight", "weight" )       << getWeight()      << endl ;
+
 }
 
             ///validation
@@ -139,36 +185,8 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
-///new constructors
-Weight::Weight(float newWeight) {
-    if (Weight::isWeightValid( newWeight)){
-        weightInPounds = newWeight;
-    }
-    else {
-        cout << "invalid weight" << endl;
-        weightInPounds = UNKNOWN_WEIGHT;
-    }
-}
 
-Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
-    unitOfMeasure = newUnitOfMeasure;
-}
 
-Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
-
-}
-
-Weight::Weight(float newWeight, float newMaxWeight) {
-
-}
-
-Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
-
-}
-
-Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) {
-
-}
 
 
 

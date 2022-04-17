@@ -39,7 +39,7 @@ public:     ///hold the weights / knowns / max / unit of measure (basically all 
     float weightInKilos         ;
     float weightInSlugs         ;
     float maxWeight             ;
-    bool  bIsKnown              ;
+    bool  bIsKnown              ;       ///is true if the weight is known
     bool  bHasMax               ;
     UnitOfMeasure unitOfMeasure ;
 
@@ -62,6 +62,7 @@ public:     ///getters
     float getWeight () const noexcept;     ///in pounds
     float getWeight ( UnitOfMeasure weightUnits );
     UnitOfMeasure getUnits () const noexcept;
+    bool isWeightKnown () const noexcept;
     void dump () const noexcept;
 
 public:     ///validation
