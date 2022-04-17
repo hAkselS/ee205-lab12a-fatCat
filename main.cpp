@@ -45,17 +45,23 @@ int main() {
     ///test the dump
     cout << "catWeight.dump" << endl;
     catWeight.dump();
-    //test set max weight
+    cout << "weightTwo.dump()" << endl;
+    weightTwo.dump();
     Weight weightThree;
     cout << "catThree.dump" << endl;
     weightThree.dump();
-    weightThree.setMaxWeight( 10 );
+
     ///try to add bad weights
-    weightThree.setWeight( 21.1, Weight::SLUG);
-    cout << "here " << endl;
-    weightThree.setWeight( 2, Weight::SLUG ); ///@todo cannot accept this weight 2 slugs
-    weightThree.getWeight( Weight::POUND );
+    weightThree.setMaxWeight( 10 );
+    weightThree.setWeight( 21.1, Weight::POUND);
+    cout << "here " << endl;    ///@todo remove before flight
+    weightThree.setWeight( 2, Weight::SLUG );
     cout << "weightThree.getWeight( pounds): " << weightThree.getWeight() << endl;
+    weightThree.getWeight( Weight::POUND );
+    cout << endl;
+    cout << "set a good weight for weight three" << endl;
+    weightThree.setWeight( .1, Weight::KILO );
+    weightThree.dump();
 
 
     return 0;
