@@ -232,7 +232,7 @@ bool Weight::validate() const noexcept {
 
     return true;
 }
-bool Weight::isWeightValid(const float inputWeight) const noexcept { ///@todo add max weight validation
+bool Weight::isWeightValid(const float inputWeight) const noexcept {
     if ( inputWeight <= 0){
         cout << "isWeightValid: weight must be greater than 0" << endl;
         return false;
