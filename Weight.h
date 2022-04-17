@@ -18,7 +18,7 @@ public:     ///enums & labels
     //static const std::string POUND_LABEL;
     //static const std::string KILO_LABEL;
     //static const std::string SLUG_LABEL;
-    std::string printUnits( UnitOfMeasure outUnit );
+    std::string printUnits( const UnitOfMeasure outUnit ) const;
 
 
             ///unknown weight
@@ -58,6 +58,7 @@ public:     ///constructors
 
 public:     ///setters
     void setWeight ( const float newWeight );
+    void setWeight ( const float newWeight, UnitOfMeasure weightUnits );
 
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds

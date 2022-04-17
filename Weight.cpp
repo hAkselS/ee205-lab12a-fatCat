@@ -21,11 +21,16 @@ using namespace std;
 //const std::string SLUG_LABEL    = "Slug"    ;
 const float Weight :: UNKNOWN_WEIGHT    = -1;
 
-string Weight::printUnits(Weight::UnitOfMeasure outUnit) {
+string Weight::printUnits(const Weight::UnitOfMeasure outUnit) const {
     switch (outUnit){
         case POUND:
             return "Pound";
+        case KILO:
+            return "Kilo";
+        case SLUG:
+            return "Slug";
     }
+    return "unit of measure unknown";
 }
             ///conversion scalars
 const float Weight :: KILOS_PER_POUND   = 0.453592    ;
@@ -136,7 +141,19 @@ void Weight::setWeight(const float newWeight) {
         weightInPounds = newWeight;
         //weightInKilos = fromPoundToKilo( newWeight ); ///more efficient design I think
         bIsKnown = true;
-
+    }
+}
+void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits) {
+    if (isWeightValid( newWeight)){
+        switch (weightUnits){
+            case POUND:     weightInPounds  = newWeight;
+            case KILO:      weightInKilos   = newWeight;
+            case SLUG:      weightInSlugs   = newWeight;
+        }
+        bIsKnown = true;
+    }
+    else{
+        cout << "invalid weight" << endl;
     }
 }
 
@@ -176,7 +193,7 @@ void Weight::dump() const noexcept {
     FORMAT_LINE( "Weight", "this" )             << this             << endl ;
     FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()  << endl ;
     FORMAT_LINE( "Weight", "weight" )           << getWeight()      << endl ;
-    //FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( POUND )      << endl ;
+    FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( getUnits() )      << endl ;
 
 }
 
@@ -193,6 +210,8 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
+
+
 
 
 
