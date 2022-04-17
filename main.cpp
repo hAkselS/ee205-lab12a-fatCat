@@ -50,8 +50,12 @@ int main() {
     cout << "catThree.dump" << endl;
     weightThree.dump();
     weightThree.setMaxWeight( 10 );
-    weightThree.setWeight( 21.1, Weight::SLUG); ///@todo cannot accept this weight
-    weightThree.dump();
+    ///try to add bad weights
+    weightThree.setWeight( 21.1, Weight::SLUG);
+    cout << "here " << endl;
+    weightThree.setWeight( 2, Weight::SLUG ); ///@todo cannot accept this weight 2 slugs
+    weightThree.getWeight( Weight::POUND );
+    cout << "weightThree.getWeight( pounds): " << weightThree.getWeight() << endl;
 
 
     return 0;

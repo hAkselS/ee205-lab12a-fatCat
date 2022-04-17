@@ -139,7 +139,8 @@ Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float ne
 void Weight::setWeight(const float newWeight) {
     if (isWeightValid( newWeight ) ){
         weightInPounds = newWeight;
-        //weightInKilos = fromPoundToKilo( newWeight ); ///more efficient design I think
+        weightInKilos = fromPoundToKilo( newWeight );
+        weightInSlugs = fromPoundToSlug( newWeight );
         bIsKnown = true;
     }
 }
@@ -147,14 +148,20 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
     if (isWeightValid( newWeight)){
         switch (weightUnits){
             case POUND:
-                weightInPounds  = newWeight;
-                unitOfMeasure = POUND;
+                weightInPounds      = newWeight;
+                weightInKilos       = fromPoundToKilo( newWeight );
+                weightInSlugs       = fromPoundToSlug( newWeight );
+                unitOfMeasure       = POUND;
             case KILO:
-                weightInKilos   = newWeight;
-                unitOfMeasure = KILO;
+                weightInPounds      = fromKiloToPound( newWeight );
+                weightInKilos       = newWeight;
+                weightInSlugs       = fromPoundToSlug(fromKiloToPound( newWeight));
+                unitOfMeasure       = KILO;
             case SLUG:
-                weightInSlugs = newWeight;
-                unitOfMeasure = SLUG;
+                weightInPounds      = fromSlugToPound( newWeight );
+                weightInKilos       = fromPoundToKilo(fromSlugToPound( newWeight ) );
+                weightInSlugs       = newWeight;
+                unitOfMeasure       = SLUG;
         }
         bIsKnown = true;
     }
@@ -238,10 +245,24 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
         return false;
     }
     if ( bHasMax){
-        if ( inputWeight >= maxWeight ){
-            cout << "isWeightValid: weight must be less than max weight" << endl;
-            return false;
-        }
+       switch(unitOfMeasure){
+           case POUND:
+               if ( inputWeight >= maxWeight ){
+                   cout << "isWeightValid: weight must be less than max weight" << endl;
+                   return false;
+               }
+           case KILO:
+               if ( fromKiloToPound( inputWeight) >= maxWeight ){
+                   cout << "isWeightValid: weight must be less than max weight" << endl;
+                   return false;
+               }
+           case SLUG:
+               if (fromSlugToPound( inputWeight) >= maxWeight ){
+                   cout << "isWeightValid: weight must be less than max weight" << endl;
+                   return false;
+               }
+
+       }
     }
     return true;
 }
