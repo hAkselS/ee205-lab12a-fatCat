@@ -48,21 +48,24 @@ int main() {
     cout << "weightTwo.dump()" << endl;
     weightTwo.dump();
     Weight weightThree;
-    cout << "catThree.dump" << endl;
+    cout << "catThree.dump 1" << endl;
     weightThree.dump();
 
     ///try to add bad weights
     weightThree.setMaxWeight( 10 );
     weightThree.setWeight( 21.1, Weight::POUND);
-    cout << "here " << endl;    ///@todo remove before flight
-    weightThree.setWeight( 2, Weight::SLUG );
+    weightThree.setWeight( 9.9, Weight::KILO );
     cout << "weightThree.getWeight( pounds): " << weightThree.getWeight() << endl;
     weightThree.getWeight( Weight::POUND );
     cout << endl;
     cout << "set a good weight for weight three" << endl;
     weightThree.setWeight( .1, Weight::KILO );
     weightThree.dump();
+    cout << endl;
 
 
     return 0;
 }
+
+
+///note,
