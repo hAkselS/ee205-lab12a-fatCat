@@ -16,6 +16,7 @@
 using namespace std;
 #define DEBUG
 
+
             ///labels and such
 //const std::string POUND_LABEL   = "Pound"   ;
 //const std::string KILO_LABEL    = "Kilo"    ;
@@ -155,15 +156,19 @@ void Weight::setWeight(const float newWeight) {
 }
 void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits) {
     ///verfiry that weight is valid (in pounds) b/c max weight is stored in pounds
-    float verifiableWeight = -1;
+    float verifiableWeight = UNKNOWN_WEIGHT;
     switch ( weightUnits ){
         case POUND:
             verifiableWeight = newWeight;
+            //cout << "setWeight: weightUnits == POUND" << endl;
+            //cout << "setWeight: verifiableWeight ==" << verifiableWeight << endl;   //these are working
+            break;
         case KILO:
             verifiableWeight = fromKiloToPound( newWeight );
+            break;
         case SLUG:
             verifiableWeight = fromSlugToPound( newWeight);
-
+            break;
     }
     if (isWeightValid( verifiableWeight)){
         switch ( weightUnits ){
@@ -171,16 +176,19 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
                 weightInPounds      = newWeight;
                 weightInKilos       = fromPoundToKilo( newWeight );
                 weightInSlugs       = fromPoundToSlug( newWeight );
+                break;
                 //cout << "setWeight: case POUND" << endl;
             case KILO:
                 weightInPounds      = fromKiloToPound( newWeight );
                 weightInKilos       = newWeight;
                 weightInSlugs       = fromPoundToSlug(fromKiloToPound( newWeight));
+                break;
                 //cout << "setWeight: case KILO" << endl;
             case SLUG:
                 weightInPounds      = fromSlugToPound( newWeight );
                 weightInKilos       = fromPoundToKilo(fromSlugToPound( newWeight ) );
                 weightInSlugs       = newWeight;
+                break;
         }
         bIsKnown = true;
     }
@@ -261,14 +269,15 @@ bool Weight::validate() const noexcept {
     return true;
 }
 bool Weight::isWeightValid(const float inputWeight) const noexcept {
+    //cout << "isWeightValid: input weight = " << inputWeight << endl;
     if ( inputWeight <= 0){
         cout << "isWeightValid: weight must be greater than 0" << endl;
         return false;
     }
     if ( bHasMax ){
-
+        //cout << "isWeightValid: bHasMax == true, maxWeight = " << maxWeight << endl;
         if ( inputWeight >= maxWeight ){
-
+            //cout << inputWeight << " is greater than " << maxWeight << endl;
             cout << "isWeightValid: weight must be less than max weight" << endl;
             return false;
        }

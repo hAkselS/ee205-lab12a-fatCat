@@ -43,6 +43,7 @@ public:     ///hold the weights / knowns / max / unit of measure (basically all 
     bool  bIsKnown              ;       ///is true if the weight is known
     bool  bHasMax               ;
     UnitOfMeasure unitOfMeasure ;
+    float verifiableWeight      ;
 
 public:     ///constructors
     Weight( );
