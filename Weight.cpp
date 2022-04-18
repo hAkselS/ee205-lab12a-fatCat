@@ -144,6 +144,17 @@ Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float ne
 
 }
 
+            ///destructor
+Weight::~Weight() {
+    bIsKnown = false;
+    weightInPounds = UNKNOWN_WEIGHT;
+    weightInKilos = UNKNOWN_WEIGHT;
+    weightInSlugs = UNKNOWN_WEIGHT;
+    unitOfMeasure = POUND;
+    bHasMax = false;
+    maxWeight = UNKNOWN_WEIGHT;
+}
+
 
             ///setters
 void Weight::setWeight(const float newWeight) {
@@ -196,6 +207,7 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
         cout << "setWeight: invalid weight" << endl;
     }
 }
+
 void Weight::setMaxWeight(const float newMaxWeight) {
     ///max weight is always stored in POUNDS
     if ( !bHasMax ){
@@ -284,6 +296,8 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
+
+
 
 
 

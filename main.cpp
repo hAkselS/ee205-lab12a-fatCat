@@ -56,19 +56,20 @@ int main() {
     cout << "TRY TO SET BAD WEIGHT IN POUNDS" << endl;
     weightThree.setWeight( 11, Weight::POUND);
     cout << "TRY TO SET BAD WEIGHT IN KILOS" << endl;
-    weightThree.setWeight( 5, Weight::KILO ); ///@todo can stil ldouble set weight
+    weightThree.setWeight( 5, Weight::KILO );
     cout << "weightThree.getWeight(pounds): " << weightThree.getWeight() << endl;
-/*
-    weightThree.getWeight( Weight::POUND );
+
     cout << endl;
-    cout << "set a good weight for weight three" << endl;
+    cout << "SET A GOOD WEIGHT" << endl;
     weightThree.setWeight( .1, Weight::KILO );
     weightThree.dump();
     cout << endl;
-*/
+
 
     return 0;
 }
 
 
-///note,
+///notes
+///@todo, other constructos
+///@todo destructors

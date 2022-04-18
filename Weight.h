@@ -40,6 +40,7 @@ public:     ///hold the weights / knowns / max / unit of measure (basically all 
     float weightInKilos         ;
     float weightInSlugs         ;
     float maxWeight             ;
+private:                ///check here if problems
     bool  bIsKnown              ;       ///is true if the weight is known
     bool  bHasMax               ;
     UnitOfMeasure unitOfMeasure ;
@@ -54,13 +55,14 @@ public:     ///constructors
     Weight( UnitOfMeasure newUnitOfMeasure, float newMaxWeight );
     Weight( float newWeight, UnitOfMeasure newUnitOfMeasure, float newMaxWeight );
 
-
+public:     ///destructors
+    ~Weight( );
 
 
 public:     ///setters
     void setWeight ( const float newWeight );
     void setWeight ( const float newWeight, UnitOfMeasure weightUnits );
-    void setMaxWeight ( const float newMaxWeight );
+    void setMaxWeight ( const float newMaxWeight );  //need to make private... no time
 
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds
