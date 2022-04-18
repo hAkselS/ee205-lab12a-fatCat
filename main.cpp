@@ -80,6 +80,7 @@ int main() {
     cout << "construct weight five" << endl;
     ///4
     Weight weightFive ( 3, Weight::SLUG );
+    weightFive.dump();
     //cout << "construct weight six" << endl;
     ///5
     //Weight weightSix ( 3, 4 );

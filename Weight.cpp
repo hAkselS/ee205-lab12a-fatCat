@@ -150,7 +150,7 @@ Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
             ///5 problem here
 Weight::Weight( float newWeight, float newMaxWeight) { ///want to use inheritance : Weight( newWeight )
     setWeight( newWeight);
-    setMaxWeight( newMaxWeight );
+    setMaxWeight( newMaxWeight); //somehow messes with units of measure
     //assert(validate());
 }
             ///6
