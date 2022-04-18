@@ -76,6 +76,10 @@ int main() {
     weightFour.setWeight( 2, Weight::SLUG );
     weightFour.validate();
 
+    ///test the constructor
+    Weight weightFive ( 3, Weight::SLUG );
+    Weight weightSix ( 3, 4 );
+    weightSix.dump();
 
     return 0;
 }
