@@ -105,6 +105,7 @@ Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
     weightInKilos = UNKNOWN_WEIGHT;
     weightInSlugs = UNKNOWN_WEIGHT;
+    maxWeight = UNKNOWN_WEIGHT;
 }
 
 Weight::Weight(float newWeight) {
@@ -113,6 +114,7 @@ Weight::Weight(float newWeight) {
         weightInKilos = fromPoundToKilo( newWeight );
         weightInSlugs = fromPoundToSlug( newWeight );
         bIsKnown = true;
+        maxWeight = UNKNOWN_WEIGHT;
     }
     else {
         cout << "constructor: invalid weight" << endl;
@@ -125,7 +127,8 @@ Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
     weightInPounds = UNKNOWN_WEIGHT;
     weightInKilos = UNKNOWN_WEIGHT;
     weightInSlugs = UNKNOWN_WEIGHT;
-
+    maxWeight = UNKNOWN_WEIGHT;
+    assert(validate());
 }
 
 Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
@@ -182,7 +185,7 @@ void Weight::setWeight(const float newWeight, Weight::UnitOfMeasure weightUnits)
             break;
     }
     if (isWeightValid( verifiableWeight)){
-        switch ( weightUnits ){
+        switch ( weightUnits ){  //would be more efficient to convert out of pounds when retrieving
             case POUND:
                 weightInPounds      = newWeight;
                 weightInKilos       = fromPoundToKilo( newWeight );
@@ -276,7 +279,23 @@ void Weight::dump() const noexcept {
 
             ///validation
 bool Weight::validate() const noexcept {
-    //@todo make this validate everything
+    if ( !bIsKnown ){
+        assert( weightInPounds == UNKNOWN_WEIGHT );
+        assert( weightInKilos == UNKNOWN_WEIGHT );
+        assert( weightInSlugs == UNKNOWN_WEIGHT );
+    }
+    if ( bIsKnown ){
+        assert( weightInPounds >= 0 );
+        assert( weightInKilos >= 0 );
+        assert( weightInSlugs >= 0);
+    }
+    if ( !bHasMax ){
+        assert( maxWeight == UNKNOWN_WEIGHT );
+    }
+    if ( bHasMax ){
+        assert( maxWeight < 0 );
+        assert( weightInPounds <= maxWeight );
+    }
 
     return true;
 }

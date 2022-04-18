@@ -58,12 +58,23 @@ int main() {
     cout << "TRY TO SET BAD WEIGHT IN KILOS" << endl;
     weightThree.setWeight( 5, Weight::KILO );
     cout << "weightThree.getWeight(pounds): " << weightThree.getWeight() << endl;
-
     cout << endl;
+
     cout << "SET A GOOD WEIGHT" << endl;
     weightThree.setWeight( .1, Weight::KILO );
     weightThree.dump();
     cout << endl;
+
+    ///destruct cat three
+    cout << "DESTROY WEIGHT THREE" << endl;
+    weightThree.~Weight();
+    //weightThree.dump(); ///it worked
+
+    ///test validate
+    Weight weightFour;
+    weightFour.validate();
+    weightFour.setWeight( 2, Weight::SLUG );
+    weightFour.validate();
 
 
     return 0;

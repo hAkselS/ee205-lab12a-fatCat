@@ -40,7 +40,7 @@ public:     ///hold the weights / knowns / max / unit of measure (basically all 
     float weightInKilos         ;
     float weightInSlugs         ;
     float maxWeight             ;
-private:                ///check here if problems
+///private:                ///check here if problems
     bool  bIsKnown              ;       ///is true if the weight is known
     bool  bHasMax               ;
     UnitOfMeasure unitOfMeasure ;
