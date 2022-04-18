@@ -84,7 +84,7 @@ int main() {
     ///5
     //Weight weightSix ( 3, 4 );
     //weightSix.dump();
-
+    cout << "finished fattus cattus" << endl;
     return 0;
 }
 
