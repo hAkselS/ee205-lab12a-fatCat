@@ -101,13 +101,14 @@ float Weight::convertWeight(float fromWeight, Weight::UnitOfMeasure fromUnit, We
 }
 
             ///constructors
+            ///1
 Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
     weightInKilos = UNKNOWN_WEIGHT;
     weightInSlugs = UNKNOWN_WEIGHT;
     maxWeight = UNKNOWN_WEIGHT;
 }
-
+            ///2
 Weight::Weight(float newWeight) {
     if (Weight::isWeightValid( newWeight)){
         weightInPounds = newWeight;
@@ -121,7 +122,7 @@ Weight::Weight(float newWeight) {
         weightInPounds = UNKNOWN_WEIGHT;
     }
 }
-
+            ///3
 Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
     unitOfMeasure = newUnitOfMeasure;
     weightInPounds = UNKNOWN_WEIGHT;
@@ -130,7 +131,7 @@ Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure) {
     maxWeight = UNKNOWN_WEIGHT;
     assert(validate());
 }
-
+            ///4
 Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
     if (Weight::isWeightValid( newWeight)){
         weightInPounds = newWeight;
@@ -146,29 +147,19 @@ Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
     }
     assert(validate());
 }
-
-Weight::Weight( float newWeight, float newMaxWeight) : Weight( newWeight ) { ///want to use inheritance
-    if (Weight::isWeightValid( newWeight)){
-        weightInPounds = newWeight;
-        weightInKilos = fromPoundToKilo( newWeight );
-        weightInSlugs = fromPoundToSlug( newWeight );
-        bIsKnown = true;
-        maxWeight = UNKNOWN_WEIGHT;
-    }
-    else {
-        cout << "constructor: invalid weight" << endl;
-        weightInPounds = UNKNOWN_WEIGHT;
-    }
-    bHasMax = true;
-    maxWeight = newMaxWeight;
-    assert(validate());
+            ///5 problem here
+Weight::Weight( float newWeight, float newMaxWeight) { ///want to use inheritance : Weight( newWeight )
+    setWeight( newWeight);
+    setMaxWeight( newMaxWeight );
+    //assert(validate());
 }
-
+            ///6
 Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight( newUnitOfMeasure ) {
     bHasMax = true;
     maxWeight = newMaxWeight;
-    assert(validate());
+    //assert(validate());
 }
+            //7
 Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight ( newWeight, newUnitOfMeasure ){
     bHasMax = true;
     maxWeight = newMaxWeight;

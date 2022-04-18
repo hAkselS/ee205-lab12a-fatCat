@@ -77,9 +77,13 @@ int main() {
     weightFour.validate();
 
     ///test the constructor
+    cout << "construct weight five" << endl;
+    ///4
     Weight weightFive ( 3, Weight::SLUG );
-    Weight weightSix ( 3, 4 );
-    weightSix.dump();
+    //cout << "construct weight six" << endl;
+    ///5
+    //Weight weightSix ( 3, 4 );
+    //weightSix.dump();
 
     return 0;
 }
