@@ -90,6 +90,3 @@ int main() {
 }
 
 
-///notes
-///@todo, other constructos
-///@todo destructors
