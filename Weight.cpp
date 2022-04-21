@@ -135,25 +135,23 @@ Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure) {
     }
     assert(validate());
 }
- /*           ///5 problem here
-Weight::Weight( float newWeight, float newMaxWeight) { ///want to use inheritance : Weight( newWeight )
-    setWeight( newWeight);
+           ///5 problem here
+Weight::Weight( float newWeight, float newMaxWeight) : Weight( newWeight ){
     setMaxWeight( newMaxWeight); //somehow messes with units of measure
     assert(validate());
 }
             ///6
 Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight( newUnitOfMeasure ) {
-    bHasMax = true;
-    maxWeight = newMaxWeight;
-    //assert(validate());
-}
-            //7
-Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight ( newWeight, newUnitOfMeasure ){
-    bHasMax = true;
-    maxWeight = newMaxWeight;
+    setMaxWeight( newMaxWeight );
     assert(validate());
 }
-*/
+
+            //7
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight (  newWeight, newUnitOfMeasure) {
+    setMaxWeight( newMaxWeight );
+    assert(validate());
+}
+
             ///destructor
 Weight::~Weight() {
     bIsKnown = false;

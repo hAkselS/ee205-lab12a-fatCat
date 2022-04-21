@@ -105,6 +105,18 @@ int main() {
     ///4
     Weight catFour ( 10, Weight::KILO); //weight is set in kilos
     catFour.dump();
+    ///5
+    Weight catFive ( 10, 11 ); //catches invalid weight maxWeight combo
+    catFive.dump();
+    ///6
+    Weight catSix ( Weight::SLUG, 11 ); //maxweight in pounds always
+    catSix.dump();
+    ///7
+    Weight catSeven ( 4.20, Weight::KILO, 11); //because weight is being set in kilos
+    catSeven.dump();
+
+
+
 
     cout << "finished fattus cattus" << endl;
     return 0;
