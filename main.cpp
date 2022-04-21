@@ -5,10 +5,7 @@
 using namespace std;
 int main() {
     cout << "Begin Fattus Cattus" << endl;
-    cout << "print constants////////"<< endl;
-    cout << "unknown weight" << Weight::UNKNOWN_WEIGHT << endl;
-    cout << "kilos per pound" << Weight::KILOS_PER_POUND << endl;
-    cout << "slugs per pound" << Weight::SLUGS_PER_POUND << endl;
+/*
 
     ///instantiate the class, set and get
     cout << "instantiate the class" << endl;
@@ -21,7 +18,7 @@ int main() {
     ///test bad weight validation
     cout << "try to add a bad weight" << endl;
     catWeight.setWeight( -1 );
-    cout << "after trying to add a bad weight, catWeight = " << catWeight.getWeight() << endl;
+    cout << "after trying to add a bad weight, catWeight = " << catWeight.getWeight( Weight::POUND ) << endl;
     cout << endl;
 
     ///test unit conversions, get by unit, set by unit
@@ -48,17 +45,16 @@ int main() {
     catWeight.dump();
     cout << "weightTwo.dump()" << endl;
     weightTwo.dump();
-    Weight weightThree;
+    Weight weightThree( 21.1,22 ); //will fail if maxWeight is < newWeight
     cout << "catThree.dump 1" << endl;
     weightThree.dump();
 
     ///try to add bad weights
-    weightThree.setMaxWeight( 10 );
     cout << "TRY TO SET BAD WEIGHT IN POUNDS" << endl;
-    weightThree.setWeight( 11, Weight::POUND);
+    weightThree.setWeight( 23, Weight::POUND);
     cout << "TRY TO SET BAD WEIGHT IN KILOS" << endl;
-    weightThree.setWeight( 5, Weight::KILO );
-    cout << "weightThree.getWeight(pounds): " << weightThree.getWeight() << endl;
+    weightThree.setWeight( 11, Weight::KILO );
+    cout << "weightThree.getWeight(pounds): " << weightThree.getWeight( Weight::POUND) << endl;
     cout << endl;
 
     cout << "SET A GOOD WEIGHT" << endl;
@@ -90,8 +86,25 @@ int main() {
 
     cout << "TEST THE OPERATORS" << endl;
     cout << "put to operator" << endl;
+*/
 
+    cout << endl;
+    cout << endl;
+    cout << endl;
 
+    cout << "SECOND START" << endl;
+    ///1
+    Weight catOne;
+    catOne.dump();
+    ///2
+    Weight catTwo ( 10 );
+    catTwo.dump();
+    ///3
+    Weight catThree ( Weight::KILO ); //works with SLUG and POUND too!
+    catThree.dump();
+    ///4
+    Weight catFour ( 10, Weight::KILO); //weight is set in kilos
+    catFour.dump();
 
     cout << "finished fattus cattus" << endl;
     return 0;

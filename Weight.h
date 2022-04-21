@@ -40,12 +40,13 @@ public:     ///hold the weights / knowns / max / unit of measure (basically all 
     float weightInPounds        ;
     float weightInKilos         ;
     float weightInSlugs         ;
-    float maxWeight             ;
-///private:                ///check here if problems
+    float verifiableWeight      ;
+
+private:                ///check here if problems
     bool  bIsKnown              ;       ///is true if the weight is known
     bool  bHasMax               ;
     UnitOfMeasure unitOfMeasure ;
-    float verifiableWeight      ;
+    float maxWeight             ;
 
 public:     ///constructors
     Weight( );
@@ -61,9 +62,10 @@ public:     ///destructors
 
 
 public:     ///setters
-    void setWeight ( const float newWeight );
-    void setWeight ( const float newWeight, UnitOfMeasure weightUnits );
-    void setMaxWeight ( const float newMaxWeight );  //need to make private... no time
+    void setWeight ( float newWeight );
+    void setWeight ( float newWeight, UnitOfMeasure weightUnits );
+private:
+    void setMaxWeight ( float newMaxWeight );  //need to make private... no time
 
 public:     ///getters
     float getWeight () const noexcept;     ///in pounds
