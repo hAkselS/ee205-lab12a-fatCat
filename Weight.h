@@ -15,10 +15,10 @@
 class Weight {
 public:     ///enums & labels
     enum UnitOfMeasure { POUND, KILO, SLUG };
-    //static const std::string POUND_LABEL;
-    //static const std::string KILO_LABEL;
-    //static const std::string SLUG_LABEL;
-    std::string printUnits( const UnitOfMeasure outUnit ) const;
+    static const std::string POUND_LABEL;
+    static const std::string KILO_LABEL;
+    static const std::string SLUG_LABEL;
+
 
 
             ///unknown weight
@@ -26,6 +26,7 @@ public:     ///enums & labels
             ///conversion scalars
     static const float KILOS_PER_POUND  ;
     static const float SLUGS_PER_POUND  ;
+
 
             ///unit converters
     static float fromKiloToPound ( float kiloIn ) noexcept;
@@ -77,7 +78,12 @@ public:     ///validation
     bool validate() const noexcept;
 
     bool isWeightValid (const float inputWeight ) const noexcept;
-};
 
+
+
+        ///operators
+    bool operator==(const Weight &rhs_Weight) const;
+
+};
 
 

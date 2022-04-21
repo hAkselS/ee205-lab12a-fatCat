@@ -18,23 +18,15 @@ using namespace std;
 
 
             ///labels and such
-//const std::string POUND_LABEL   = "Pound"   ;
-//const std::string KILO_LABEL    = "Kilo"    ;
-//const std::string SLUG_LABEL    = "Slug"    ;
+const string Weight::POUND_LABEL   = "Pound"   ;
+const string Weight::KILO_LABEL    = "Kilo"    ;
+const string Weight::SLUG_LABEL    = "Slug"    ;
 const float Weight :: UNKNOWN_WEIGHT    = -1;
 
-string Weight::printUnits(const Weight::UnitOfMeasure outUnit) const {
-    switch (outUnit){
-        case POUND:
-            return "Pound";
-        case KILO:
-            return "Kilo";
-        case SLUG:
-            return "Slug";
-    }
-    return "printUnits: unit of measure unknown";
-}
-            ///conversion scalars
+
+
+
+///conversion scalars
 const float Weight :: KILOS_PER_POUND   = 0.453592    ;
 const float Weight :: SLUGS_PER_POUND   = 0.031081    ;
 
@@ -106,7 +98,7 @@ Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
     weightInKilos = UNKNOWN_WEIGHT;
     weightInSlugs = UNKNOWN_WEIGHT;
-    maxWeight = UNKNOWN_WEIGHT;
+    maxWeight     = UNKNOWN_WEIGHT;
 }
             ///2
 Weight::Weight(float newWeight) {
@@ -287,12 +279,12 @@ void Weight::dump() const noexcept {
     cout << setfill( ' ' ) ;
     cout << left ;
     cout << boolalpha ;
-    FORMAT_LINE( "Weight", "this" )             << this             << endl ;
-    FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()  << endl ;
-    FORMAT_LINE( "Weight", "weight" )           << getWeight( getUnits() )      << endl ;
-    FORMAT_LINE( "Weight", "unitOfMeasure" )    << printUnits( getUnits() )      << endl ;
-    FORMAT_LINE( "Weight", "hasMaxWeight" )     << hasMaxWeight()      << endl ;
-    FORMAT_LINE( "Weight", "MaxWeight" )        << getMaxWeight()      << endl ;
+    FORMAT_LINE( "Weight", "this" )             << this                                     << endl ;
+    FORMAT_LINE( "Weight", "isKnown" )          << isWeightKnown()                          << endl ;
+    FORMAT_LINE( "Weight", "weight" )           << getWeight( getUnits() )       << endl ;
+    FORMAT_LINE( "Weight", "unitOfMeasure" )    << getUnits()                               << endl ;
+    FORMAT_LINE( "Weight", "hasMaxWeight" )     << hasMaxWeight()                           << endl ;
+    FORMAT_LINE( "Weight", "MaxWeight" )        << getMaxWeight()                           << endl ;
 
 }
 
@@ -334,6 +326,30 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
     }
     return true;
 }
+
+            ///OPERATORS
+            ///put to operator
+std::ostream& operator<<( ostream& lhs_stream
+        ,const Weight::UnitOfMeasure rhs_UnitOfMeasure ) {
+    switch (rhs_UnitOfMeasure) {
+        case Weight::POUND:
+            return lhs_stream << Weight::POUND_LABEL;
+        case Weight::KILO:
+            return lhs_stream << Weight::KILO_LABEL;
+        case Weight::SLUG:
+            return lhs_stream << Weight::SLUG_LABEL;
+        default:
+            throw out_of_range("The unit can’t be mapped to a string");
+    }
+}
+//only returns true
+bool Weight::operator==(const Weight &rhs_Weight) const {
+    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
+    float rhs_weight = (bIsKnown) ? getWeight( Weight::POUND ) : 0;
+    return lhs_weight == rhs_weight;
+}
+
+
 
 
 

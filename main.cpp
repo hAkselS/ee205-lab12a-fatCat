@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Weight.h"
 
+
 using namespace std;
 int main() {
     cout << "Begin Fattus Cattus" << endl;
@@ -85,8 +86,16 @@ int main() {
     ///5
     //Weight weightSix ( 3, 4 );
     //weightSix.dump();
+    cout << endl;
+
+    cout << "TEST THE OPERATORS" << endl;
+    cout << "put to operator" << endl;
+
+
+
     cout << "finished fattus cattus" << endl;
     return 0;
 }
 
-
+//@todo get the put to operator working
+//@todo learn how to use the comparrison operator
