@@ -146,8 +146,8 @@ Weight::Weight(Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Wei
     assert(validate());
 }
 
-            //7
-Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight (  newWeight, newUnitOfMeasure) {
+            ///7
+Weight::Weight(float newWeight, Weight::UnitOfMeasure newUnitOfMeasure, float newMaxWeight) : Weight (  newWeight, newUnitOfMeasure) { //can only delegate once
     setMaxWeight( newMaxWeight );
     assert(validate());
 }
@@ -324,7 +324,7 @@ bool Weight::isWeightValid(const float inputWeight) const noexcept {
 
             ///OPERATORS
             ///put to operator
-std::ostream& operator<<( ostream& lhs_stream
+std::ostream& operator<<( std::ostream& lhs_stream
         ,const Weight::UnitOfMeasure rhs_UnitOfMeasure ) {
     switch (rhs_UnitOfMeasure) {
         case Weight::POUND:
@@ -334,14 +334,25 @@ std::ostream& operator<<( ostream& lhs_stream
         case Weight::SLUG:
             return lhs_stream << Weight::SLUG_LABEL;
         default:
-            throw out_of_range("The unit can’t be mapped to a string");
+            throw std::out_of_range("The unit can’t be mapped to a string");
     }
 }
-//only returns true
 bool Weight::operator==(const Weight &rhs_Weight) const {
-    float lhs_weight = (bIsKnown) ? getWeight(Weight::POUND) : 0;
-    float rhs_weight = (bIsKnown) ? getWeight( Weight::POUND ) : 0;
+    float lhs_weight = (bIsKnown) ? this->getWeight(Weight::POUND) : 0;
+    float rhs_weight = (bIsKnown) ? rhs_Weight.getWeight( Weight::POUND ) : 0;
     return lhs_weight == rhs_weight;
+}
+
+Weight &Weight::operator+=(float rhs_addToWeight) { //only adds weight in pounds
+    if ( bIsKnown ) {
+        float currentWeight = this->getWeight(Weight::POUND);
+        float newWeightPrime = currentWeight + rhs_addToWeight;
+        this->setWeight(newWeightPrime, Weight::POUND);
+    }
+    else {
+        this->setWeight( rhs_addToWeight );
+    }
+    return *this;
 }
 
 

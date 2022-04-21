@@ -84,8 +84,14 @@ public:     ///validation
 
 
         ///operators
+        ///comparison
     bool operator==(const Weight &rhs_Weight) const;
+        ///addition
+    Weight& operator+=( float rhs_addToWeight );
+
 
 };
 
-
+            ///put to operator
+extern std::ostream& operator<<( std::ostream& lhs_stream
+        ,const Weight::UnitOfMeasure rhs_UnitOfMeasure ) ;
