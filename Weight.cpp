@@ -98,6 +98,7 @@ Weight::Weight() {
     weightInPounds = UNKNOWN_WEIGHT;
     weightInKilos = UNKNOWN_WEIGHT;
     weightInSlugs = UNKNOWN_WEIGHT;
+    unitOfMeasure = POUND;
     maxWeight     = UNKNOWN_WEIGHT;
 }
             ///2
